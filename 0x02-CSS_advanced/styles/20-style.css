@@ -370,7 +370,7 @@ ul.row {
     text-align: right;
 }
 
-.row::after {
+.row {
     content: none;
     display: table-row;
 }
