@@ -4,8 +4,8 @@ body {
     font-size: 14px;
     h1 {
         font-size: 16px;
-        .smaller {
-            font-size: 12px;
-        }
+    }
+    h1.smaller {
+        font-size: 12px;
     }
 }
