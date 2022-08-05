@@ -5,10 +5,10 @@
     margin-right: $margin;
 }
 
-.body {
+body {
     @include margins(10px);
 }
 
-.div {
+div {
     @include margins(15px);
 }
