@@ -586,7 +586,7 @@
   
   .post-meta-list strong {
       color: var(--color-primary);
-      font-size: var(--font-size-medium);
+      font-size: var(--font-size-small);
       text-transform: uppercase;
       display: block;
   }
@@ -621,4 +621,3 @@
   .tag-list li:last-child::after {
     content: "";
   }
-  
