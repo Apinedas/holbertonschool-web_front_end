@@ -1,38 +1,39 @@
 /* Order on boxes */
 
 .container {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .box {
-    color: white;
-    font-weight: bold;
-    height: 50px;
-    width: 1;
+  color: white;
+  padding: 1.5rem 1rem;
 }
 
 .box1 {
-    background-color: cadetblue;
+  background-color: #49D54D;
+  font-size: 1.5rem;
 }
 
 .box2 {
-    background-color: blue;
-    flex-grow: 2;
+  background-color: #62AAF0;
+  font-size: 2.5rem;
 }
 
 .box3 {
-    background-color: brown;
-    flex-grow: 3;
+  background-color: #506473;
+  font-size: 5rem;
 }
 
 .box4 {
-    background-color: green;
-    flex-grow: 2;
+  background-color: violet;
+  font-size: 2.5rem;
 }
 
 .box5 {
-    background-color: orange;
+  background-color: orange;
+  font-size: 1.5rem;
 }
+
