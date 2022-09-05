@@ -5,14 +5,14 @@ function createElement(data) {
     document.body.appendChild(paragraph);
 }
 
-function reqListener () {
-    console.log(this.responseText);
+function queryWikipedia(callback) {
+    let oReq = new XMLHttpRequest();
+    oReq.open("GET", "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow&origin=*");
+    oReq.addEventListener("load", () => { 
+        const jsonResponse = JSON.parse(oReq.response);
+        callback(jsonResponse.query.pages['21721040'].extract);
+     });
+    oReq.send();
 }
 
-function queryWikipedia(callback) {
-    var oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", reqListener);
-    oReq.open("GET", "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow&origin=*");
-    oReq.send();
-    console.log(oReq);
-}
+queryWikipedia(createElement);
