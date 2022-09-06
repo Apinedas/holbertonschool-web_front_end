@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 3</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+        <script type="application/javascript">
+            function createFamilyTree() {
+                const table = $('<table></table>');
+                const header = $('<tr></tr>');
+                const firstRow = $('<tr></tr>');
+                const secondRow = $('<tr></tr>');
+                const thirdRow = $('<tr></tr>');
+                const headerFirstCell = $('<th></th>');
+                const headerSecondCell = $('<th></th>');
+                const nameFirstCell = $('<td></td>');
+                const nameSecondCell = $('<td></td>');
+                const nameThirdCell = $('<td></td>');
+                const lastnameFirstCell = $('<td></td>');
+                const lastnameSecondCell = $('<td></td>');
+                const lastnameThirdCell = $('<td></td>');
+
+                headerFirstCell.text('Fistname');
+                header.append(headerFirstCell);
+                headerSecondCell.text('Lastname');
+                header.append(headerSecondCell);
+
+                nameFirstCell.text('Guillaume');
+                firstRow.append(nameFirstCell);
+                lastnameFirstCell.text('Salva');
+                firstRow.append(lastnameFirstCell);
+
+                nameSecondCell.text('Paulette');
+                secondRow.append(nameSecondCell);
+                lastnameSecondCell.text('Salva');
+                secondRow.append(lastnameSecondCell);
+
+                nameThirdCell.text('Antoine');
+                thirdRow.append(nameThirdCell);
+                lastnameThirdCell.text('Salva');
+                thirdRow.append(lastnameThirdCell);
+                                
+                table.append(header);
+                table.append(firstRow);
+                table.append(secondRow);
+                table.append(thirdRow);
+
+                $('body').append(table);
+            };
+        </script>
+    </head>
+
+    <body>
+        <script type="application/javascript">
+            createFamilyTree();
+        </script>
+
+    </body>
+
+</html>
