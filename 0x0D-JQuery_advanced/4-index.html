@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 4</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+        <script type="application/javascript">
+            function createFamilyTree() {
+                $("body").append("\
+                <table>\
+                    <thead>\
+                        <tr>\
+                            <th>Firstname</th>\
+                            <th>Lastname</th>\
+                        </tr>\
+                    </thead>\
+                    <tbody>\
+                        <tr>\
+                            <td>Guillaume</td>\
+                            <td>Salva</td>\
+                        </tr>\
+                        <tr>\
+                            <td>Paulette</td>\
+                            <td>Salva</td>\
+                        </tr>\
+                        <tr>\
+                            <td>Antoine</td>\
+                            <td>Salva</td>\
+                        </tr>\
+                    </tbody>\
+                </table>");
+            };
+
+            function replaceFamilyTree() {
+                const table = $("table");
+                const newLine = "<tbody>\
+                                    <tr>\
+                                        <td>Gerard</td>\
+                                        <td>Bonissa</td>\
+                                    </tr>\
+                                </tbody>";
+                const change = table.html().replace(/<tbody>.*<\/tbody>/s, newLine);
+                table.html(change);
+            };
+        </script>
+    </head>
+
+    <body>
+        <script type="application/javascript">
+            createFamilyTree();
+            replaceFamilyTree();
+        </script>
+
+    </body>
+
+</html>
