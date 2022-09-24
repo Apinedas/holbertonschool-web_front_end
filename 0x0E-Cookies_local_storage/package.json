@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.1"
+  }
+}

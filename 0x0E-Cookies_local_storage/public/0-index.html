@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 0</title>
+</head>
+<body>
+    <h1>Login to website</h1>
+    <input type="text" id="firstname" placeholder="Firstname">
+    <input type="text" id="email" placeholder="Email">
+    <button class="log-btn">Log me in</button>
+    <h1>Cookies</h1>
+    <button class="cookies-btn">Show the cookies</button>
+    <script type="application/javascript">
+        function setCookies (firstname, email) {
+            document.cookie = `firstname=${firstname}`;
+            document.cookie = `email=${email}`;
+        }
+
+        function showCookies () {
+            const newParagraph = document.createElement('p');
+            newParagraph.innerHTML = `Cookies: ${document.cookie}`;
+            document.getElementsByTagName('body')[0].appendChild(newParagraph);
+        }
+
+        const logBtn = document.getElementsByClassName('log-btn')[0];
+        logBtn.addEventListener("click", () => {
+            const inputName = document.getElementById('firstname').value;
+            const inputEmail = document.getElementById('email').value;
+
+            setCookies(inputName, inputEmail);
+        })
+
+        const cookiesBtn = document.getElementsByClassName('cookies-btn')[0];
+        cookiesBtn.addEventListener('click', () => {
+            showCookies();
+        })
+    </script>
+</body>
+</html>

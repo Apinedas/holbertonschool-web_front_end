@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <title>Task 4</title>
+</head>
+<body>
+    <div>
+        <h2>Login to website</h2>
+        <input type="text" id="firstname" placeholder="Firstname">
+        <input type="text" id="email" placeholder="Email">
+        <button class="log-btn">Log me in</button>
+    </div>
+    <script type="application/javascript">
+        function showForm () {
+            for (let h2 of document.querySelectorAll('h1')) {
+                if (h2.textContent.includes('Welcome')) {
+                    h2.remove();
+                }
+            }
+
+            const form = document.getElementsByTagName('div')[0];
+            form.style.display = 'block';
+        }
+
+        function hideForm () {
+            const form = document.getElementsByTagName('div')[0];
+            form.style.display = 'none';
+        }
+
+        function deleteCookiesAndShowForm () {
+            Cookies.remove('firstname');
+            Cookies.remove('email');
+            showForm();
+        }
+
+        function setCookiesAndShowWelcomeMessage (firstname, email) {
+            Cookies.set('firstname', firstname, { expires: 10 });
+            Cookies.set('email', email, { expires: 10 });
+            showWelcomeMessageOrForm();
+        }
+
+        function showWelcomeMessageOrForm () {
+            if (!Cookies.get('firstname')) {
+                showForm ();
+            } else {
+                let welcomeMessage = document.createElement('h1');
+                let logoutLink = document.createElement('a');
+                
+                welcomeMessage.innerHTML = `Welcome: ${Cookies.get('firstname')}`;
+                welcomeMessage.appendChild(logoutLink);
+                
+                logoutLink.innerHTML = '(logout)';
+                logoutLink.style.fontWeight = 'normal';
+                logoutLink.style.fontStyle = 'italic';
+                logoutLink.style.marginLeft = '10px';
+                logoutLink.addEventListener('click', () => {
+                    deleteCookiesAndShowForm();
+                    welcomeMessage.remove();
+                })
+
+                hideForm();
+                document.querySelector('body').appendChild(welcomeMessage);
+            }
+        }
+        
+        const logBtn = document.getElementsByClassName('log-btn')[0];
+        logBtn.addEventListener("click", () => {
+            const inputName = document.getElementById('firstname').value;
+            const inputEmail = document.getElementById('email').value;
+
+            setCookiesAndShowWelcomeMessage(inputName, inputEmail);
+        })
+
+        showWelcomeMessageOrForm();
+    </script>
+</body>
+</html>

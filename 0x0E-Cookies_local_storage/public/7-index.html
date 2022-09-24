@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <script type="application/javascript">
+      const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+      function getCartFromStorage () {
+        if (sessionStorage.cart) {
+            return JSON.parse(sessionStorage.cart);
+        }
+        return ({});
+      }
+
+      function addItemToCart (item) {
+        let cart = getCartFromStorage();
+        if (Object.keys(cart).includes(item)) {
+            cart[item] = cart[item] + 1;
+        } else {
+            cart[item] = 1;
+        }
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+      }
+
+      function removeItemFromCart (item) {
+        let cart = getCartFromStorage();
+        if (Object.keys(cart).includes(item)) {
+            delete (cart[item]);
+        }
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+      }
+
+      function clearCart () {
+        sessionStorage.clear();
+        displayCart();
+      }
+
+      function createStore () {
+        const h2 = document.createElement('h2');
+        h2.innerHTML = 'Available products:';
+        document.querySelector("body").appendChild(h2);
+
+        const unList = document.createElement("ul");
+        document.querySelector("body").appendChild(unList);
+
+        for (let item of availableItems) {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = item;
+          listItem.addEventListener("click", () => {
+            addItemToCart(item);
+          });
+          unList.appendChild(listItem);
+        }
+      }
+
+      function displayCart () {
+        let allH2 = document.getElementsByTagName('h2');
+        if (allH2.length < 2) {
+            const h2 = document.createElement('h2');
+            h2.innerHTML = 'Your cart:';
+            document.querySelector("body").appendChild(h2);
+        }
+
+        let actualDiv = document.querySelector('div');
+        if (!actualDiv) {
+            let newDiv = document.createElement('div');
+            document.querySelector("body").appendChild(newDiv);
+        } else {
+            while (actualDiv.firstChild) {
+                actualDiv.removeChild(actualDiv.firstChild);
+            }
+        }
+        updateCart();
+      }
+
+      function updateCart () {
+        let actualDiv = document.querySelector('div');
+        let unList = document.createElement('ul');
+        let cart = getCartFromStorage();
+
+        if (Object.keys(cart).length === 0) {
+            let listItem = document.createElement('li');
+            listItem.innerHTML = "Your cart is empty";
+            unList.appendChild(listItem);
+        } else {
+            for (item of Object.keys(cart)) {
+                let listItem = document.createElement('li');
+                let removeText = document.createElement('em');
+                listItem.innerHTML = `${item} x ${cart[item]}`;
+                removeText.innerHTML = "(remove)";
+                removeText.addEventListener('click', () => {
+                    removeItemFromCart(listItem.innerHTML.split(' ')[0]);
+                })
+                listItem.appendChild(removeText);
+                unList.appendChild(listItem);
+            }
+            let clearText = document.createElement('li');
+            clearText.innerHTML = 'Clear my cart';
+            clearText.addEventListener('click', () => {
+                clearCart();
+            })
+            unList.insertBefore(clearText, unList.firstChild);
+        }
+
+        actualDiv.appendChild(unList);
+      }
+
+      if (typeof Storage !== "undefined") {
+        createStore();
+        displayCart();
+      } else {
+        alert(
+          "Sorry, your browser does not support Web storage. Try again with a better one"
+        );
+      }
+    </script>
+  </body>
+</html>

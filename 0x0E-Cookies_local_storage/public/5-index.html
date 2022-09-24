@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <script type="application/javascript">
+      const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+      function addItemToCart(item) {
+        localStorage.setItem(item, true);
+      }
+
+      function createStore() {
+        const unList = document.createElement("ul");
+        document.querySelector("body").appendChild(unList);
+
+        for (let item of availableItems) {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = item;
+          listItem.addEventListener("click", () => {
+            addItemToCart(item);
+          });
+          unList.appendChild(listItem);
+        }
+      }
+
+      function displayCart() {
+        if (localStorage.length) {
+          const cartParagraph = document.createElement("p");
+          cartParagraph.innerHTML = `You previously had ${localStorage.length} items in your cart`;
+          document.querySelector("body").appendChild(cartParagraph);
+        }
+      }
+
+      if (typeof Storage !== "undefined") {
+        createStore();
+        displayCart();
+      } else {
+        alert(
+          "Sorry, your browser does not support Web storage. Try again with a better one"
+        );
+      }
+    </script>
+  </body>
+</html>
